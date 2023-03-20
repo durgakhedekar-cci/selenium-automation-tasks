@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-@pytest.mark.invalid
+@pytest.mark.negativeTCs
 def invalid_login():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://login-app-iota.vercel.app/login")
@@ -26,6 +26,5 @@ def invalid_login():
     assert error_text.is_displayed(), "Error message is not displayed"
     assert error_txt == "Invalid Credentials", "Error message does not match"
     time.sleep(2)
-
 
 

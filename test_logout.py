@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-@pytest.mark.login
+
 def login_logout():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://login-app-iota.vercel.app/login")
@@ -32,6 +32,5 @@ def login_logout():
 
     time.sleep(5)
     driver.quit()
-
 
 
