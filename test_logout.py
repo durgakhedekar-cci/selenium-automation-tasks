@@ -34,4 +34,4 @@ def login_logout():
     driver.quit()
 
 
-login_logout()
+
