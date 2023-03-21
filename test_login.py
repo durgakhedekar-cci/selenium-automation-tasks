@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-@pytest.mark.login
+
 def test_valid_login():
 # open the browser
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))

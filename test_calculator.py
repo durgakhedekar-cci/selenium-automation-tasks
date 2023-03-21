@@ -2,7 +2,7 @@ import pytest
 
 from calculator import Calculator
 
-#from calculator import add_two_numb, Calculator
+from calculator import add_two_numb, Calculator
 
 assert isinstance(pytest.mark.math, object)
 
@@ -12,7 +12,6 @@ assert isinstance(pytest.mark.math, object)
 def test_add_single_digit_nums():
     object = Calculator()
     result = object.add_two_numb(2, 3)
-    #result = Calculator().add_two_numb(2, 3)
     assert result == 5, "sum of 2+3 should be 5"
 
 '''
