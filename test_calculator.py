@@ -2,8 +2,6 @@ import pytest
 
 from calculator import Calculator
 
-from calculator import add_two_numb, Calculator
-
 assert isinstance(pytest.mark.math, object)
 
 

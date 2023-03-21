@@ -1,7 +1,7 @@
-from calculator import Calculator, add_two_numb, multiply_two_numb
+from calculator import Calculator
 
 mycal = Calculator()
-result = add_two_numb(2, 3)
+result = mycal.add_two_numb(2,3)
 print(result)
 
 
