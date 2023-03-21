@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-@pytest.mark.negativeTCs
+@pytest.mark.invalid
 def test_login_invalid_username():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://login-app-iota.vercel.app/login")
