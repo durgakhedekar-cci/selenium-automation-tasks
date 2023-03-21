@@ -8,7 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 
-def login_logout():
+def test_logout():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://login-app-iota.vercel.app/login")
     time.sleep(2)

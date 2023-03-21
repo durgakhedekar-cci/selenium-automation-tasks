@@ -7,19 +7,18 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.mark.negativeTCs
-def invalid_login():
+def test_login_invalid_password():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://login-app-iota.vercel.app/login")
     time.sleep(2)
 
     username = driver.find_element(By.ID, "username_textbox")
-    username.send_keys("ddrfff")
+    username.send_keys("admin")
 
     password = driver.find_element(By.ID, "password_textbox")
-    password.send_keys("admin123")
+    password.send_keys("admin123ss")
 
-    Login_btn = driver.find_element(By.XPATH,
-                                    "/html//div[@id='root']/div[@class='App']/section/div//form//button[@type='submit']")
+    Login_btn = driver.find_element(By.XPATH, "/html//div[@id='root']/div[@class='App']/section/div//form//button[@type='submit']")
     Login_btn.click()
 
     error_text = driver.find_element(By.CSS_SELECTOR, ".mb-2.text-center.text-danger")
@@ -27,3 +26,5 @@ def invalid_login():
     assert error_text.is_displayed(), "Error message is not displayed"
     assert error_txt == "Invalid Credentials", "Error message does not match"
     time.sleep(2)
+
+
