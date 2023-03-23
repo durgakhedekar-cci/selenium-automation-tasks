@@ -6,10 +6,17 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-@pytest.mark.invalid
-def test_invalid_username_login():
+@pytest.fixture
+def driver():
+    # open the browser
+    print("Creating driver for chrome browser")
+    browser_driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    yield browser_driver
+    print("Closing driver for chrome browser")
+    browser_driver.quit()
 
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+@pytest.mark.invalid
+def test_invalid_username_login(driver):
 
     driver.get("https://login-app-iota.vercel.app/login")
     time.sleep(2)
@@ -36,7 +43,7 @@ def test_invalid_username_login():
     assert error_text.is_displayed(), "Error message is not displayed"
     assert error_txt == "Invalid Credentials", "Error message does not match"
     time.sleep(5)
-    driver.quit()
+
 
 
 @pytest.mark.invalid
@@ -68,4 +75,4 @@ def test_invalid_password_login():
     assert error_message.is_displayed(), "Error message is not displayed"
     assert error_msg == "Invalid Credentials", "Error message does not match"
     time.sleep(5)
-    driver.quit()
+
