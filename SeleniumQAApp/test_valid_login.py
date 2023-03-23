@@ -18,7 +18,7 @@ def test_valid_login():
     assert current_url == "https://login-app-iota.vercel.app/login", "Default URL should be login"
     # locate username element
     user_name = driver.find_element(By.ID, "username_textbox")
-    # locate password element
+    # locate password elements
     password = driver.find_element(By.ID, "password_textbox")
     # locate Login button
     login_btn = driver.find_element(By.XPATH,
