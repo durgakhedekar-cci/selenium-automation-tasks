@@ -20,8 +20,7 @@ def test_invalid_username_login():
     password = driver.find_element(By.ID, "password_textbox")
 
 
-    login_btn = driver.find_element(By.XPATH,
-                                    "/html//div[@id='root']/div[@class='App']/section/div//form//button[@type='submit']")
+    login_btn = driver.find_element(By.XPATH, "/html//div[@id='root']/div[@class='App']/section/div//form//button[@type='submit']")
 
     user_name.send_keys("adminxyz")
 
