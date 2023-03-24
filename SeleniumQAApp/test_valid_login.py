@@ -49,5 +49,4 @@ def test_valid_login():
     assert header_text.is_displayed(), "Contact List message not displayed "
     assert login_text == "Contact List", "Contact List text does not match"
 
-    time.sleep(5)
     driver.quit()
