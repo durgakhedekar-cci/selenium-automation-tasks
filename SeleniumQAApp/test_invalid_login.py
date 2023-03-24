@@ -46,29 +46,3 @@ def test_invalid_username_login(driver, username, password, expected_error_messa
     assert error_text.is_displayed(), "Error message is not displayed"
     assert error_txt == expected_error_message, "Error message does not match"
 
-# def test_invalid_password_login():
-#     driver.get("https://login-app-iota.vercel.app/login")
-#     time.sleep(2)
-#     current_urls = driver.current_url
-#     assert current_urls == "https://login-app-iota.vercel.app/login", "Default URL should be login"
-#
-#     user_names = driver.find_element(By.ID, "username_textbox")
-#     passwords = driver.find_element(By.ID, "password_textbox")
-#
-#     login_button = driver.find_element(By.XPATH,
-#                                        "/html//div[@id='root']/div[@class='App']/section/div//form//button[@type='submit']")
-#
-#     user_names.send_keys("admin")
-#
-#     passwords.send_keys("admin2365")
-#
-#     login_button.click()
-#     # Validate logged in URL
-#     login_url = driver.current_url
-#     assert login_url == "https://login-app-iota.vercel.app/login", "URL should not change"
-#
-#     # Validate login message
-#     error_message = driver.find_element(By.CSS_SELECTOR, ".mb-2.text-center.text-danger")
-#     error_msg = error_message.text
-#     assert error_message.is_displayed(), "Error message is not displayed"
-#     assert error_msg == "Invalid Credentials", "Error message does not match"
