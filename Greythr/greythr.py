@@ -10,12 +10,15 @@ driver.get("https://creativecapsule.greythr.com/")
 time.sleep(2)
 
 login_name = driver.find_element(By.NAME, "username")
-login_name.send_keys("username")
+login_name.send_keys("CCI00224")
 
 password = driver.find_element(By.ID, "password")
-password.send_keys("password")
+password.send_keys("Alps123456!!***")
 time.sleep(2)
 login_btn = driver.find_element(By.XPATH, "//button[contains(text(), 'Log in')]")
 login_btn.click()
-
 time.sleep(5)
+
+Logout_btn = driver.find_element(By.XPATH, "//a[@title='Logout']")
+time.sleep(5)
+Logout_btn.click()
