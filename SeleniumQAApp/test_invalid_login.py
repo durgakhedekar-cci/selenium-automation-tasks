@@ -18,9 +18,9 @@ def driver():
 
 @pytest.mark.invalid
 @pytest.mark.parametrize("username,password,expected_error_message",
-                         [("adminxyz", "admin123", "Invalid Credentials")])
-# ("admin", "admin12345", "Invalid Credentials")])
-
+                         [("adminxyz", "admin123", "Invalid Credentials"),
+                          ("admin", "admin12345", "Invalid Credentials"),
+                          ("adminsss", "admin12345s", "Invalid Credentials")])
 def test_invalid_username_login(driver, username, password, expected_error_message):
     driver.get("https://login-app-iota.vercel.app/login")
     time.sleep(2)
