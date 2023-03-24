@@ -7,9 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.mark.login
-def test_valid_login():
-    # open the browser
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+def test_valid_login(driver):
 
     # Navigate to Site URL
     driver.get("https://login-app-iota.vercel.app/login")
