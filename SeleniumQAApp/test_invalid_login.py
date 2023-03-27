@@ -4,7 +4,8 @@ import pytest
 from selenium.webdriver.common.by import By
 
 
-@pytest.mark.invalid
+@pytest.mark.login
+@pytest.mark.negative
 @pytest.mark.parametrize("username,password,expected_error_message",
                          [("adminxyz", "admin123", "Invalid Credentials"),
                           ("admin", "admin12345", "Invalid Credentials"),
