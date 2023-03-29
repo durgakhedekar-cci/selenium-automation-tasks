@@ -39,4 +39,4 @@ class LoginPage:
 
     def is_error_label_displayed(self) -> bool:
         error_label = self._driver.find_element(self.__error_label_field)
-        return error_label.is_displayed()
+
