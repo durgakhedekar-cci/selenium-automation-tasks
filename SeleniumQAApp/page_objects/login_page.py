@@ -32,7 +32,7 @@ class LoginPage:
         submit_button_field.click()
 
     @property
-    def get_error_label_text(self):
+    def error_label_text(self)->str:
         error_label = self._driver.find_element(self.__error_label_field)
         actual_text = error_label.text
         return actual_text
