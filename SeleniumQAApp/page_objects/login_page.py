@@ -1,4 +1,3 @@
-import time
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -28,7 +27,6 @@ class LoginPage:
 
         username_data.send_keys(username)
         password_data.send_keys(password)
-        time.sleep(2)
         submit_button_field.click()
 
     @property
