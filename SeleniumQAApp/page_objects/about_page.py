@@ -1,5 +1,6 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 
 class AboutPage:
@@ -18,10 +19,14 @@ class AboutPage:
 
     @property
     def header_text_data(self) -> str:
-        head_text = self._driver.find_element(self.__header_txt)
+        head_text = self._driver.find_element(*self.__header_txt)
         actual_txt = head_text.text
         return actual_txt
 
     def is_header_text_displayed(self) -> bool:
-        head_txt = self._driver.find_element(self.__header_txt)
-        return head_txt.is_displayed()
+        try:
+            head_txt = self._driver.find_element(*self.__header_txt)
+        except NoSuchElementException as e:
+            print("\nElement Not Found")
+            return False
+        return True
