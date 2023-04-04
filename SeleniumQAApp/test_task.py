@@ -1,3 +1,5 @@
+import time
+
 from page_objects.login_page import LoginPage
 from page_objects.task_page import TaskPage
 
@@ -12,5 +14,14 @@ def test_task(driver):
 
     assert task_page.current_url == "https://login-app-iota.vercel.app/task", "URL is not correct"
 
-    task_page.check_pg_header() == "TASK TRACKER", "title does not match"
-    task_page.check_subheader() == "Instructions", "Sub title is wrong"
+    assert task_page.check_pg_header == "TASK TRACKER", "title does not match"
+    assert task_page.check_subheader == "Instructions", "Sub title is wrong"
+    assert task_page.check_sub_subheader1 == "- Add -> Add New Tasks", "Sub sub heading does not match"
+    assert task_page.check_sub_subheader2 == "- Edit -> Edit existing task", "Sub sub heading does not match"
+    assert task_page.check_sub_subheader3 == "- Done -> If task is completed", "Sub sub heading does not match"
+    assert task_page.check_sub_subheader4 == "- Delete -> If you want to delete task", "Sub sub heading does not match"
+
+
+    task_page.enter_text('Test')
+
+
