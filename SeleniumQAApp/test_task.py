@@ -26,7 +26,12 @@ def test_task(driver):
     task_page.get_added_text()
 
     task_page.edit_the_task('Test123')
-    time.sleep(3)
+
+    #task_page.delete_the_task()
+    #task_page.is_deleted_text_displayed()
+
+    task_page.strike_text()
+    time.sleep(6)
 
 
 
