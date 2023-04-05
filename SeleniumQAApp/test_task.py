@@ -23,5 +23,11 @@ def test_task(driver):
 
 
     task_page.enter_text('Test')
+    task_page.get_added_text()
+
+    task_page.edit_the_task('Test123')
+    time.sleep(3)
+
+
 
 

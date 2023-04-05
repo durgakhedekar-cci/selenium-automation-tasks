@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
@@ -13,6 +15,10 @@ class TaskPage:
     __span3_text = (By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(3)")
     __span4_text = (By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(4)")
     __add_task_field = (By.ID, "task-input")
+    __add_btn = (By.CSS_SELECTOR, ".btn.btn-primary.col-2.mb-2.ml-2")
+    __added_text = (By.CSS_SELECTOR, ".col-10.text-break.wrap")
+    __edit_btn = (By.CSS_SELECTOR, "svg:nth-of-type(1) > path")
+    __save_btn = (By.CSS_SELECTOR, ".btn.btn-secondary.col-2.mb-2.ml-2")
 
     def __init__(self, driver: WebDriver):
         self._driver = driver
@@ -60,6 +66,24 @@ class TaskPage:
 
     def enter_text(self, sometext):
         add_task = self._driver.find_element(*self.__add_task_field)
+        add_button = self._driver.find_element(*self.__add_btn)
         add_task.click()
         add_task.clear()
         add_task.send_keys(sometext)
+        add_button.click()
+
+    def get_added_text(self):
+        wait = WebDriverWait(self._driver, 10)
+        wait.until(ec.presence_of_element_located(self.__added_text))
+        return self._driver.find_element(*self.__added_text).text
+
+    def edit_the_task(self, edittxt):
+        edit_button = self._driver.find_element(*self.__edit_btn)
+        edit_button.click()
+        edit_field = self._driver.find_element(*self.__add_task_field)
+        edit_field.click()
+        edit_field.clear()
+        edit_field.send_keys(edittxt)
+        save_button = self._driver.find_element(*self.__save_btn)
+        save_button.click()
+
