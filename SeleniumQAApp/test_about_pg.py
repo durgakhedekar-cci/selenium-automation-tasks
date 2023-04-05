@@ -17,4 +17,3 @@ def test_about_pg(driver):
 
     about_page.header_text_data == "Welcome to Selenium Learning Group", "title does not match"
 
-    #contact_page.is_header_text_displayed()

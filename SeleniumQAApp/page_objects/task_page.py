@@ -1,9 +1,11 @@
 import time
 
+from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as e
 
 
 class TaskPage:
@@ -19,6 +21,9 @@ class TaskPage:
     __added_text = (By.CSS_SELECTOR, ".col-10.text-break.wrap")
     __edit_btn = (By.CSS_SELECTOR, "svg:nth-of-type(1) > path")
     __save_btn = (By.CSS_SELECTOR, ".btn.btn-secondary.col-2.mb-2.ml-2")
+    __delete_btn = (By.CSS_SELECTOR, "svg:nth-of-type(3) > path")
+    __strike_button = (By.CSS_SELECTOR, "svg:nth-of-type(2) > path")
+
 
     def __init__(self, driver: WebDriver):
         self._driver = driver
@@ -86,4 +91,22 @@ class TaskPage:
         edit_field.send_keys(edittxt)
         save_button = self._driver.find_element(*self.__save_btn)
         save_button.click()
+
+    def delete_the_task(self):
+        delete_button = self._driver.find_element(*self.__delete_btn)
+        delete_button.click()
+
+    def is_deleted_text_displayed(self):
+        wait = WebDriverWait(self._driver, 10)
+        wait.until(e.invisibility_of_element_located(self.__added_text))
+
+    def strike_text(self):
+        strike_btn = self._driver.find_element(*self.__strike_button)
+        strike_btn.click()
+
+
+
+
+
+
 
