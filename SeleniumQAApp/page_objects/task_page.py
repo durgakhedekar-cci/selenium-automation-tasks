@@ -19,6 +19,7 @@ class TaskPage:
     __add_task_field = (By.ID, "task-input")
     __add_btn = (By.CSS_SELECTOR, ".btn.btn-primary.col-2.mb-2.ml-2")
     __added_text = (By.CSS_SELECTOR, ".col-10.text-break.wrap")
+    __text_present = (By.CSS_SELECTOR, "input#task-input")
     __edit_btn = (By.CSS_SELECTOR, "svg:nth-of-type(1) > path")
     __save_btn = (By.CSS_SELECTOR, ".btn.btn-secondary.col-2.mb-2.ml-2")
     __delete_btn = (By.CSS_SELECTOR, "svg:nth-of-type(3) > path")
@@ -73,7 +74,7 @@ class TaskPage:
         add_task = self._driver.find_element(*self.__add_task_field)
         add_button = self._driver.find_element(*self.__add_btn)
         add_task.click()
-        add_task.clear()
+        #add_task.clear()
         add_task.send_keys(sometext)
         add_button.click()
 
@@ -81,6 +82,18 @@ class TaskPage:
         wait = WebDriverWait(self._driver, 10)
         wait.until(ec.presence_of_element_located(self.__added_text))
         return self._driver.find_element(*self.__added_text).text
+    @property
+    def get_text_from_textbox(self) -> str:
+        get_txt = self._driver.find_element(*self.__text_present)
+        actual_txt5 = get_txt.get_attribute('value')
+        return actual_txt5
+
+    @property
+    def get_placeholder_text(self) -> str:
+        placeholder_txt = self._driver.find_element(*self.__text_present)
+        placeholder_txt.clear()
+        actual_txt6 = placeholder_txt.get_attribute('placeholder')
+        return actual_txt6
 
     def edit_the_task(self, edittxt):
         edit_button = self._driver.find_element(*self.__edit_btn)
