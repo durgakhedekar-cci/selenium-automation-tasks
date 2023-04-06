@@ -12,10 +12,14 @@ class TaskPage:
     __task_url = (By.CSS_SELECTOR, "div > a:nth-of-type(2)")
     __header_txt = (By.TAG_NAME, "h4")
     __subheader_txt = (By.TAG_NAME, "h5")
-    __span1_text = (By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(1)")
-    __span2_text = (By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(2)")
-    __span3_text = (By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(3)")
-    __span4_text = (By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(4)")
+    __span1_text = (
+    By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(1)")
+    __span2_text = (
+    By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(2)")
+    __span3_text = (
+    By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(3)")
+    __span4_text = (
+    By.CSS_SELECTOR, ".border.border-1.d-flex.flex-column.instruction.mt-2.px-4.py-2.rounded > span:nth-of-type(4)")
     __add_task_field = (By.ID, "task-input")
     __add_btn = (By.CSS_SELECTOR, ".btn.btn-primary.col-2.mb-2.ml-2")
     __added_text = (By.CSS_SELECTOR, ".col-10.text-break.wrap")
@@ -24,7 +28,7 @@ class TaskPage:
     __save_btn = (By.CSS_SELECTOR, ".btn.btn-secondary.col-2.mb-2.ml-2")
     __delete_btn = (By.CSS_SELECTOR, "svg:nth-of-type(3) > path")
     __strike_button = (By.CSS_SELECTOR, "svg:nth-of-type(2) > path")
-
+    __strike_txt = (By.CSS_SELECTOR, ".col-10.task-done.text-break.wrap")
 
     def __init__(self, driver: WebDriver):
         self._driver = driver
@@ -41,11 +45,13 @@ class TaskPage:
         head_text = self._driver.find_element(*self.__header_txt)
         actual_txt = head_text.text
         return actual_txt
+
     @property
     def check_subheader(self) -> str:
         subhead_text = self._driver.find_element(*self.__subheader_txt)
         actual_text = subhead_text.text
         return actual_text
+
     @property
     def check_sub_subheader1(self) -> str:
         sub_subheader1_text = self._driver.find_element(*self.__span1_text)
@@ -74,7 +80,7 @@ class TaskPage:
         add_task = self._driver.find_element(*self.__add_task_field)
         add_button = self._driver.find_element(*self.__add_btn)
         add_task.click()
-        #add_task.clear()
+        # add_task.clear()
         add_task.send_keys(sometext)
         add_button.click()
 
@@ -83,17 +89,18 @@ class TaskPage:
         wait.until(ec.presence_of_element_located(self.__added_text))
         return self._driver.find_element(*self.__added_text).text
 
-
-    def check_mandatory_field(self):
+    @property
+    def check_mandatory_field(self) -> str:
         click_textfield = self._driver.find_element(*self.__add_task_field)
         click_textfield.click()
         click_add_button_field = self._driver.find_element(*self.__add_btn)
         click_add_button_field.click()
         time.sleep(5)
         alert = self._driver.switch_to.alert
-        popup_txt = self._driver.switch_to.alert.text
+        popup_txt = alert.text
         alert.accept()
         return popup_txt
+
 
     @property
     def get_text_from_textbox(self) -> str:
@@ -126,13 +133,13 @@ class TaskPage:
         wait = WebDriverWait(self._driver, 10)
         wait.until(e.invisibility_of_element_located(self.__added_text))
 
-    def strike_text(self):
+    @property
+    def strike_text_check(self) ->str:
         strike_btn = self._driver.find_element(*self.__strike_button)
         strike_btn.click()
-
-
-
-
+        strike_text = self._driver.find_element(*self.__strike_txt)
+        actual_txt7 = strike_text.get_attribute('text-decoration')
+        return actual_txt7
 
 
 

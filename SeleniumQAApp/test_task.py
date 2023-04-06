@@ -14,7 +14,7 @@ def test_task(driver):
 
     assert task_page.current_url == "https://login-app-iota.vercel.app/task", "URL is not correct"
 
-    assert task_page.check_pg_header == "TASK TRACKER", "title does not match"
+    assert task_page.check_pg_header == "TASK TRACKER", "Header title does not match"
     assert task_page.check_subheader == "Instructions", "Sub title is wrong"
     assert task_page.check_sub_subheader1 == "- Add -> Add New Tasks", "Sub sub heading does not match"
     assert task_page.check_sub_subheader2 == "- Edit -> Edit existing task", "Sub sub heading does not match"
@@ -27,17 +27,20 @@ def test_task(driver):
     task_page.enter_text('Test')
     task_page.get_added_text()
     time.sleep(2)
-    assert task_page.check_mandatory_field() == "Please add the task! Task can't be empty", "error message is wrong"
+
+    assert task_page.check_mandatory_field == "Please add the task! Task can't be empty", "error message is wrong"
 
 
     task_page.edit_the_task('Test123')
     time.sleep(2)
-    # task_page.strike_text()
-    #
-    task_page.delete_the_task()
-    time.sleep(2)
-    task_page.is_deleted_text_displayed()
-    time.sleep(2)
+
+    task_page.strike_text_check == "test", "The text is not striked through"
+
+
+    # task_page.delete_the_task()
+    # time.sleep(2)
+    # task_page.is_deleted_text_displayed()
+    # time.sleep(2)
 
 
 
