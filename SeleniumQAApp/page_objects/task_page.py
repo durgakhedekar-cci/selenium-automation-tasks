@@ -82,6 +82,19 @@ class TaskPage:
         wait = WebDriverWait(self._driver, 10)
         wait.until(ec.presence_of_element_located(self.__added_text))
         return self._driver.find_element(*self.__added_text).text
+
+
+    def check_mandatory_field(self):
+        click_textfield = self._driver.find_element(*self.__add_task_field)
+        click_textfield.click()
+        click_add_button_field = self._driver.find_element(*self.__add_btn)
+        click_add_button_field.click()
+        time.sleep(5)
+        alert = self._driver.switch_to.alert
+        popup_txt = self._driver.switch_to.alert.text
+        alert.accept()
+        return popup_txt
+
     @property
     def get_text_from_textbox(self) -> str:
         get_txt = self._driver.find_element(*self.__text_present)
