@@ -24,4 +24,8 @@ def test_contact(driver):
     assert contact_page.get_address_field == "Address", "Text is incorrect"
     assert contact_page.get_submit_field_text == "Submit", "Text is incorrect"
 
-
+    assert contact_page.get_placeholder_text_fn == "Enter first name", "The placeholder text is incorrect"
+    assert contact_page.get_placeholder_text_ln == "Enter last name", "The placeholder text is incorrect"
+    assert contact_page.get_placeholder_text_email == "Enter email", "The placeholder text is incorrect"
+    assert contact_page.get_placeholder_text_phone == "Enter phone number", "The placeholder text is incorrect"
+    assert contact_page.get_placeholder_text_address == "Enter adress", "The placeholder text is incorrect"

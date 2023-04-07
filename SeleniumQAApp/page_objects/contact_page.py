@@ -12,6 +12,11 @@ class ContactPage:
     __phone_number_field = (By.XPATH, "/html//div[@id='root']/div[@class='App']//form//label[.='Phone Number']")
     __address_field = (By.XPATH, "/html//div[@id='root']/div[@class='App']//form//label[.='Address']")
     __submit_btn_text = (By.XPATH, "/html//div[@id='root']/div[@class='App']//form//button[@type='submit']")
+    __placeholder_fn_field = (By.ID, "name_textbox")
+    __placeholder_ln_field = (By.NAME, "lastName")
+    __placeholder_email_field = (By.ID, "email_textbox")
+    __placeholder_phone_field = (By.ID, "phone_textbox")
+    __placeholder_address_field = (By.ID, "message_textbox")
 
     def __init__(self, driver: WebDriver):
         self._driver = driver
@@ -71,3 +76,33 @@ class ContactPage:
         submit_txt = self._driver.find_element(*self.__submit_btn_text)
         submit_text = submit_txt.text
         return submit_text
+
+    @property
+    def get_placeholder_text_fn(self) -> str:
+        placeholder_txt_fn = self._driver.find_element(*self.__placeholder_fn_field)
+        actual_txt = placeholder_txt_fn.get_attribute('placeholder')
+        return actual_txt
+
+    @property
+    def get_placeholder_text_ln(self) -> str:
+        placeholder_txt_ln = self._driver.find_element(*self.__placeholder_ln_field)
+        actual_txt1 = placeholder_txt_ln.get_attribute('placeholder')
+        return actual_txt1
+
+    @property
+    def get_placeholder_text_email(self) -> str:
+        placeholder_txt_email = self._driver.find_element(*self.__placeholder_email_field)
+        actual_txt2 = placeholder_txt_email.get_attribute('placeholder')
+        return actual_txt2
+
+    @property
+    def get_placeholder_text_phone(self) -> str:
+        placeholder_txt_phone = self._driver.find_element(*self.__placeholder_phone_field)
+        actual_txt3 = placeholder_txt_phone.get_attribute('placeholder')
+        return actual_txt3
+
+    @property
+    def get_placeholder_text_address(self) -> str:
+        placeholder_txt_address = self._driver.find_element(*self.__placeholder_address_field)
+        actual_txt4 = placeholder_txt_address.get_attribute('placeholder')
+        return actual_txt4
