@@ -95,7 +95,6 @@ class TaskPage:
         click_textfield.click()
         click_add_button_field = self._driver.find_element(*self.__add_btn)
         click_add_button_field.click()
-        time.sleep(5)
         alert = self._driver.switch_to.alert
         popup_txt = alert.text
         alert.accept()
@@ -140,6 +139,3 @@ class TaskPage:
         strike_text = self._driver.find_element(*self.__strike_txt)
         actual_txt7 = strike_text.get_attribute('text-decoration')
         return actual_txt7
-
-
-

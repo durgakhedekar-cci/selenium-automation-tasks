@@ -26,21 +26,16 @@ def test_task(driver):
 
     task_page.enter_text('Test')
     task_page.get_added_text()
-    time.sleep(2)
+
 
     assert task_page.check_mandatory_field == "Please add the task! Task can't be empty", "error message is wrong"
 
 
     task_page.edit_the_task('Test123')
-    time.sleep(2)
 
     task_page.strike_text_check == "test", "The text is not striked through"
-
-
-    # task_page.delete_the_task()
-    # time.sleep(2)
-    # task_page.is_deleted_text_displayed()
-    # time.sleep(2)
+    task_page.delete_the_task()
+    task_page.is_deleted_text_displayed()
 
 
 
