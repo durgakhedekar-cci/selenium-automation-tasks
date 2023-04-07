@@ -1,11 +1,8 @@
-import time
-
-from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as e
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as e
 
 
 class TaskPage:
@@ -32,6 +29,9 @@ class TaskPage:
 
     def __init__(self, driver: WebDriver):
         self._driver = driver
+
+    def open(self):
+        self._driver.get(self.__url)
 
     @property
     def current_url(self):
