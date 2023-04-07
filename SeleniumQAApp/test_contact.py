@@ -15,5 +15,13 @@ def test_contact(driver):
     assert contact_page.current_url == "https://login-app-iota.vercel.app/contact", "URL is not correct"
     assert contact_page.get_the_heading == "ADD CONTACTS", " The heading is incorrect"
 
-    contact_page.click_plus_button()
+    contact_page.click_plus_minus_button()
+
+    assert contact_page.get_first_name_field == "First name", "Text is incorrect"
+    assert contact_page.get_last_name_field == "Last name", "Text is incorrect"
+    assert contact_page.get_email_field == "Email address", "Text is incorrect"
+    assert contact_page.get_phone_field() == "Phone Number", "Text is incorrect"
+    assert contact_page.get_address_field == "Address", "Text is incorrect"
+    assert contact_page.get_submit_field_text == "Submit", "Text is incorrect"
+
 
