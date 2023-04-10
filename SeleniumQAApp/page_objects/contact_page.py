@@ -17,6 +17,17 @@ class ContactPage:
     __placeholder_email_field = (By.ID, "email_textbox")
     __placeholder_phone_field = (By.ID, "phone_textbox")
     __placeholder_address_field = (By.ID, "message_textbox")
+    __fn_input_field = (By.ID, "name_textbox")
+    __ln_input_field = (By.XPATH, "/html//div[@id='root']/div[@class='App']//form/div[1]/div[2]/input[@id='name_textbox']")
+    __email_input_field = (By.ID, "email_textbox")
+    __phone_input_field = (By.ID, "phone_textbox")
+    __address_input_field = (By.ID, "message_textbox")
+    __submit_button = (By.XPATH, "/html//div[@id='root']/div[@class='App']//form//button[@type='submit']")
+    __table_field_name = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Name']")
+    __table_field_email = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Email']")
+    __table_field_phone = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Phone Number']")
+    __table_field_address = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Address']")
+
 
     def __init__(self, driver: WebDriver):
         self._driver = driver
@@ -106,3 +117,51 @@ class ContactPage:
         placeholder_txt_address = self._driver.find_element(*self.__placeholder_address_field)
         actual_txt4 = placeholder_txt_address.get_attribute('placeholder')
         return actual_txt4
+
+    @property
+    def get_table_field_name(self) -> str:
+        table_text1 = self._driver.find_element(*self.__table_field_name)
+        table_txt1 = table_text1.text
+        return table_txt1
+
+    @property
+    def get_table_field_email(self) -> str:
+        table_text2 = self._driver.find_element(*self.__table_field_email)
+        table_txt2 = table_text2.text
+        return table_txt2
+
+    @property
+    def get_table_field_phone(self) -> str:
+        table_text3 = self._driver.find_element(*self.__table_field_phone)
+        table_txt3 = table_text3.text
+        return table_txt3
+
+    @property
+    def get_table_field_address(self) -> str:
+        table_text4 = self._driver.find_element(*self.__table_field_address)
+        table_txt4 = table_text4.text
+        return table_txt4
+
+    def enter_text_in_fields(self, fname, lname, email, phone, address):
+        add_fn = self._driver.find_element(*self.__fn_input_field)
+        add_fn.click()
+        add_fn.send_keys(fname)
+        add_ln = self._driver.find_element(*self.__ln_input_field)
+        add_ln.click()
+        add_ln.send_keys(lname)
+        add_email = self._driver.find_element(*self.__email_input_field)
+        add_email.click()
+        add_email.send_keys(email)
+        add_phone = self._driver.find_element(*self.__phone_input_field)
+        add_phone.click()
+        add_phone.send_keys(phone)
+        add_address = self._driver.find_element(*self.__address_input_field)
+        add_address.click()
+        add_address.send_keys(address)
+        submit_btn = self._driver.find_element(*self.__submit_button)
+        submit_btn.click()
+
+    @property
+    def get_entered_text_from_table(self) -> str:
+        
+
