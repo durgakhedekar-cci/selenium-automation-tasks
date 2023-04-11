@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
@@ -161,7 +163,14 @@ class ContactPage:
         submit_btn = self._driver.find_element(*self.__submit_button)
         submit_btn.click()
 
-    @property
-    def get_entered_text_from_table(self) -> str:
-        
+    def check_mandatory_field_fn(self):
+        fn_error_msg = self._driver.find_element(*self.__fn_input_field).get_attribute("validationMessage")
+        return fn_error_msg
+
+    def check_mandatory_field_ln(self):
+        fill_fn = self._driver.find_element(*self.__fn_input_field)
+        fill_fn.send_keys('Test')
+        ln_error_msg = self._driver.find_element(*self.__ln_input_field).get_attribute("validationMessage")
+        return ln_error_msg
+
 

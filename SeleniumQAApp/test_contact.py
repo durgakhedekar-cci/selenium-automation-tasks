@@ -29,12 +29,14 @@ def test_contact(driver):
     assert contact_page.get_placeholder_text_email == "Enter email", "The placeholder text is incorrect"
     assert contact_page.get_placeholder_text_phone == "Enter phone number", "The placeholder text is incorrect"
     assert contact_page.get_placeholder_text_address == "Enter adress", "The placeholder text is incorrect"
-    time.sleep(5)
+
 
     assert contact_page.get_table_field_name == "Name", "The column field name is incorrect"
     assert contact_page.get_table_field_email == "Email", "The column field name is incorrect"
     assert contact_page.get_table_field_phone == "Phone Number", "The column field name is incorrect"
     assert contact_page.get_table_field_address == "Address", "The column field name is incorrect"
+
+    assert contact_page.check_mandatory_field_fn() == "Please fill out this field.", "Error message is incorrect"
 
     #contact_page.enter_text_in_fields('Test', 'Test1', 'test@test.com','1234567890', 'Ponda')
     time.sleep(5)
