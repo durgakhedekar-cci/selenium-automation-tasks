@@ -23,10 +23,13 @@ class TestCasesPage:
     def go_to_testcase_page(self):
         self._driver.find_element(*self.__testcase_url).click()
 
-    def check_collapse_expand_TC1(self):
+    def check_collapse_expand_tc1(self):
         expand_btn = self._driver.find_element(*self.__expand_btn_tc1)
         expand_btn.click()
         collapse_btn = self._driver.find_element(*self.__collapse_btn_tc1)
         collapse_btn.click()
+
+    def check_collapse_expand_tc2(self):
+
 
 

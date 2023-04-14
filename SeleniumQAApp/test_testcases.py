@@ -14,4 +14,4 @@ def test_testcases(driver):
     testcase_page.go_to_testcase_page()
 
     assert testcase_page.current_url == "https://login-app-iota.vercel.app/test-cases", "URL is not correct"
-    testcase_page.check_collapse_expand_TC1()
+    testcase_page.check_collapse_expand_tc1()
