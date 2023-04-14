@@ -1,5 +1,3 @@
-import time
-
 from page_objects.contact_page import ContactPage
 from page_objects.login_page import LoginPage
 
@@ -37,6 +35,8 @@ def test_contact(driver):
     assert contact_page.get_table_field_address == "Address", "The column field name is incorrect"
 
     assert contact_page.check_mandatory_field_fn() == "Please fill out this field.", "Error message is incorrect"
+    assert contact_page.check_mandatory_field_ln() == "Please fill out this field.", "Error message is incorrect"
 
-    #contact_page.enter_text_in_fields('Test', 'Test1', 'test@test.com','1234567890', 'Ponda')
-    time.sleep(5)
+
+    contact_page.enter_text_in_fields('Test', 'Test1', 'test@test.com','1234567890', 'Ponda')
+    #contact_page.get_table_data()

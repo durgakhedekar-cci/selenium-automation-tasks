@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
@@ -29,7 +27,9 @@ class ContactPage:
     __table_field_email = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Email']")
     __table_field_phone = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Phone Number']")
     __table_field_address = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Address']")
-
+    __table_row_data = (By.XPATH, "//table/tbody/tr")
+    __table_col_data = (By.XPATH, "//table/tbody/tr[1]/td")
+    __table_data = (By.XPATH, "//tr[' + str(i) + ']/td[' + str(j) + ']")
 
     def __init__(self, driver: WebDriver):
         self._driver = driver
@@ -40,7 +40,6 @@ class ContactPage:
     @property
     def current_url(self):
         return self._driver.current_url
-
 
     def go_to_contact_pg(self):
         self._driver.find_element(*self.__contact_url).click()
@@ -53,10 +52,10 @@ class ContactPage:
 
     def click_plus_minus_button(self):
         self._driver.find_element(*self.__plus_btn).click()
-        #self._driver.find_element(*self.__plus_btn).click()
+        # self._driver.find_element(*self.__plus_btn).click()
 
     @property
-    def get_first_name_field(self) ->str:
+    def get_first_name_field(self) -> str:
         fn_txt = self._driver.find_element(*self.__first_name_field)
         first_name_text = fn_txt.text
         return first_name_text
@@ -171,6 +170,21 @@ class ContactPage:
         fill_fn = self._driver.find_element(*self.__fn_input_field)
         fill_fn.send_keys('Test')
         ln_error_msg = self._driver.find_element(*self.__ln_input_field).get_attribute("validationMessage")
+        fill_fn.clear()
         return ln_error_msg
 
-
+    # def get_table_data(self):
+    #     rws = self._driver.find_elements(*self.__table_row_data)
+    #     r = len(rws)
+    #     column = self._driver.find_elements(*self.__table_col_data)
+    #     c = len(column)
+    #     element = []
+    #     rows = []
+    #     for i in range(1, r):
+    #         for j in range(1, c):
+    #             get_txt = self._driver.find_element(*self.__table_data)
+    #             get_txt_text = get_txt.text
+    #             rows.append(get_txt_text)
+    #         element.append(rows)
+    #         rows = []
+    #     print("The following data is shown from the table", element)
