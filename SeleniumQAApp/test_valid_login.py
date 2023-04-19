@@ -20,12 +20,16 @@ def test_valid_login(driver):
 def test_logout(driver):
     login_page = LoginPage(driver)
     login_page.open()
+
+    assert login_page.get_the_heading == "Please login to your account", "The text is incorrect"
+    assert login_page.get_the_heading_rightside == "SELENIUM", "The text is incorrect"
+
     login_page.perform_login('admin', 'admin123')
 
     dashboard_page = DashboardPage(driver)
     assert dashboard_page.current_url == "https://login-app-iota.vercel.app/dashboard", "URL should not change"
 
-    assert dashboard_page.get_contact_title() == "Contact List", "title does not match 'Contact List'"
+    assert dashboard_page.get_contact_title() == "Contact Listby", "title does not match 'Contact List'"
 
     dashboard_page.perform_logout()
     assert dashboard_page.current_url == "https://login-app-iota.vercel.app/login"
