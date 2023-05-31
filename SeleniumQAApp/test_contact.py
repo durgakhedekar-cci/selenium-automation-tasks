@@ -39,4 +39,4 @@ def test_contact(driver):
 
 
     contact_page.enter_text_in_fields('Test', 'Test1', 'test@test.com','1234567890', 'Ponda')
-    #contact_page.get_table_data()
+    contact_page.get_table_data()

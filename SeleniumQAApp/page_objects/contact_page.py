@@ -1,5 +1,11 @@
+import time
+from telnetlib import EC
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from tabulate import tabulate
+from selenium.webdriver.support import expected_conditions as E
 
 
 class ContactPage:
@@ -27,9 +33,12 @@ class ContactPage:
     __table_field_email = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Email']")
     __table_field_phone = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Phone Number']")
     __table_field_address = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th[.='Address']")
-    __table_row_data = (By.XPATH, "//table/tbody/tr")
-    __table_col_data = (By.XPATH, "//table/tbody/tr[1]/td")
-    __table_data = (By.XPATH, "//tr[' + str(i) + ']/td[' + str(j) + ']")
+    #__table_row_data = (By.XPATH, "//table/tbody/tr")
+    __table_row_data = (By.XPATH, "/html//div[@id='root']/div[@class='App']//table[@class='table']//th")
+    #__table_col_data = (By.XPATH, "//table/tbody/tr[1]/td")
+    __table_col_data = (By.XPATH, "//table[@class='table']//tbody/tr/td[1]")
+    #__table_data = (By.XPATH, "//tr[' + str(i) + ']/td[' + str(j) + ']")
+    __table_data = (By.XPATH, "/html//div[@id='root']/div/div/div/div[2]")
 
     def __init__(self, driver: WebDriver):
         self._driver = driver
@@ -173,18 +182,26 @@ class ContactPage:
         fill_fn.clear()
         return ln_error_msg
 
-    # def get_table_data(self):
-    #     rws = self._driver.find_elements(*self.__table_row_data)
-    #     r = len(rws)
-    #     column = self._driver.find_elements(*self.__table_col_data)
-    #     c = len(column)
-    #     element = []
-    #     rows = []
-    #     for i in range(1, r):
-    #         for j in range(1, c):
-    #             get_txt = self._driver.find_element(*self.__table_data)
-    #             get_txt_text = get_txt.text
-    #             rows.append(get_txt_text)
-    #         element.append(rows)
-    #         rows = []
-    #     print("The following data is shown from the table", element)
+    def get_table_data(self):
+        wait = WebDriverWait(self._driver, 10)
+
+        rows = wait.until(E.presence_of_all_elements_located(self.__table_row_data))
+        r = len(rows)
+
+        column = wait.until(E.presence_of_all_elements_located(self.__table_col_data))
+        c = len(column)
+
+        element = []
+        for i in range(1, r):
+            row_data = []
+            for j in range(1, c):
+                get_txt = wait.until(E.visibility_of_element_located(self.__table_data))
+                get_txt_text = get_txt.text
+                row_data.append(get_txt_text)
+            element.append(row_data)
+
+        headers = [cell.text for cell in rows[0].find_elements(By.XPATH, "./td")]
+        print("The following data is shown from the table:")
+        print(tabulate(element, headers=headers, tablefmt="grid"))
+
+
