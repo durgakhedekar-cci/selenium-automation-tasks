@@ -15,5 +15,5 @@ def test_about_pg(driver):
 
     assert about_page.is_header_text_displayed() == True
 
-    # about_page.header_text_data == "Welcome to Selenium Learning Group", "title does not match"
+    about_page.header_text_data == "Welcome to Selenium Learning Group", "title does not match"
 
