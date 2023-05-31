@@ -132,10 +132,17 @@ class TaskPage:
         wait = WebDriverWait(self._driver, 10)
         wait.until(e.invisibility_of_element_located(self.__added_text))
 
-    @property
-    def strike_text_check(self) ->str:
+    def stike_through(self):
         strike_btn = self._driver.find_element(*self.__strike_button)
         strike_btn.click()
         strike_text = self._driver.find_element(*self.__strike_txt)
-        actual_txt7 = strike_text.get_attribute('text-decoration')
-        return actual_txt7
+        #this is to check if strike through cannot be seen
+        #self._driver.execute_script("arguments[0].style.textDecoration = 'none';", strike_text)
+        actual_txt7 = strike_text.value_of_css_property('text-decoration')
+
+        if 'line-through' in actual_txt7:
+            print("I can see the strike-through text")
+            return True
+        else:
+            print("I cannot see the strike-through text")
+            return False

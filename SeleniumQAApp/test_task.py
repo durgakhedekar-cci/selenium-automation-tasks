@@ -21,7 +21,7 @@ def test_task(driver):
     assert task_page.check_sub_subheader4 == "- Delete -> If you want to delete task", "Sub sub heading does not match"
 
     assert task_page.get_text_from_textbox == "Fill today's time sheet", "the text is not correct"
-    assert task_page.get_placeholder_text == "Add your task", "the text is incorrect"
+    assert task_page.get_placeholder_text == "Add your task", "the placeholder is incorrect"
 
     task_page.enter_text('Test')
     task_page.get_added_text()
@@ -32,7 +32,7 @@ def test_task(driver):
 
     task_page.edit_the_task('Test123')
 
-    task_page.strike_text_check == "test", "The text is not striked through"
+    task_page.stike_through()
     task_page.delete_the_task()
     task_page.is_deleted_text_displayed()
 
