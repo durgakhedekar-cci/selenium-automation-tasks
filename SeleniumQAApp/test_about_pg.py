@@ -2,7 +2,6 @@ import pytest
 from page_objects.about_page import AboutPage
 from page_objects.login_page import LoginPage
 
-
 @pytest.mark.contact
 def test_about_pg(driver):
     login_page = LoginPage(driver)
@@ -16,4 +15,3 @@ def test_about_pg(driver):
     assert about_page.is_header_text_displayed() == True
 
     about_page.header_text_data == "Welcome to Selenium Learning Group", "title does not match"
-

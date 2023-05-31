@@ -2,7 +2,6 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
-
 class AboutPage:
     __contact_pg_url = (By.XPATH, "//div[@id='navbarSupportedContent']//a[@href='/about']")
     __header_txt = (By.TAG_NAME, "h1")
